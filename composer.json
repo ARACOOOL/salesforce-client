@@ -1,0 +1,23 @@
+{
+  "name": "aracoool/salesforce-client",
+  "type": "library",
+  "description": "SalesForce REST api client",
+  "keywords": ["salesforce", "http", "rest", "web service", "curl", "client", "api"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Askar Fuzaylov",
+      "email": "tkdforever@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "guzzlehttp/guzzle": "~6.0",
+    "beberlei/assert": "^2.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "SalesForce\\": "src/"
+    }
+  }
+}
