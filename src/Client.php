@@ -12,6 +12,8 @@ use SalesForce\Authentication\Authentication;
  */
 class Client
 {
+    const API_VERSION = 'v42.0';
+
     /**
      * @var Authentication
      */
@@ -49,7 +51,7 @@ class Client
         $this->checkAuthentication();
 
         try {
-            $response = $this->client->get($this->instanceUrl . $query, [
+            $response = $this->client->get($this->getBaseEndpoint() . $query, [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->token
                 ]
@@ -71,7 +73,7 @@ class Client
         $this->checkAuthentication();
 
         try {
-            $response = $this->client->post($this->instanceUrl . $endpoint, [
+            $response = $this->client->post($this->getBaseEndpoint() . $endpoint, [
                 'json'    => $params,
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->token
@@ -94,7 +96,7 @@ class Client
         $this->checkAuthentication();
 
         try {
-            $response = $this->client->patch($this->instanceUrl . $endpoint, [
+            $response = $this->client->patch($this->getBaseEndpoint() . $endpoint, [
                 'json'    => $params,
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->token
@@ -116,7 +118,7 @@ class Client
         $this->checkAuthentication();
 
         try {
-            $response = $this->client->delete($this->instanceUrl . $endpoint, [
+            $response = $this->client->delete($this->getBaseEndpoint() . $endpoint, [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->token
                 ]
@@ -146,5 +148,13 @@ class Client
             $this->token = $response->access_token;
             $this->instanceUrl = $response->instance_url;
         }
+    }
+
+    /**
+     * @return string
+     */
+    private function getBaseEndpoint()
+    {
+        return sprintf('%s/services/data/%s', $this->instanceUrl, self::API_VERSION);
     }
 }

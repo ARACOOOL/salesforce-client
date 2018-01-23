@@ -80,6 +80,6 @@ class Builder
 
         }
 
-        return '/services/data/v20.0/query/?q=SELECT+' . implode(',', $this->select) . '+from+' . $this->type . ((count($where)) ? '+where+' . implode('+AND+', $where) : '');
+        return '/query/?q=SELECT+' . implode(',', $this->select) . '+from+' . $this->type . ((count($where)) ? '+where+' . implode('+AND+', $where) : '');
     }
 }
