@@ -15,13 +15,12 @@ composer require "aracoool/salesforce-client:^1.0"
 Getting an information of specific account
 
 ```php
-use GuzzleHttp\Client;
 use SalesForce\Authentication\Authentication;
 use SalesForce\Authentication\PasswordAuthentication;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$client = new \SalesForce\Client(new Client(), new PasswordAuthentication(
+$client = new \SalesForce\ClientFactory::create(new PasswordAuthentication(
     Authentication::LIVE_HOST,
     'client id',
     'cleint secret',
@@ -37,7 +36,7 @@ try {
 }
 ```
 
-*Result*
+**Result**
 
 ```
 stdClass Object
