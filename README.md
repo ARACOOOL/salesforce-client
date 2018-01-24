@@ -12,7 +12,7 @@ composer require "aracoool/salesforce-client:^1.0"
 
 ## Usage
 
-Getting an information of specific account
+### Getting an information of specific account
 
 ```php
 use SalesForce\Authentication\Authentication;
@@ -49,5 +49,59 @@ stdClass Object
 
     [Id] => 0013600001UltKTAAZ
     ...
+)
+```
+
+### Usage SOQL and SOQL query builder
+
+```php
+use SalesForce\Authentication\Authentication;
+use SalesForce\Authentication\PasswordAuthentication;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$client = new \SalesForce\ClientFactory::create(new PasswordAuthentication(
+    Authentication::LIVE_HOST,
+    'client id',
+    'cleint secret',
+    'username',
+    'password + access token'
+));
+
+$soqlBuilder = new \SalesForce\Soql\Builder();
+$soqlBuilder->select(['name'])
+    ->from('Account');
+
+try {
+    $result = $client->get($soqlBuilder->build());
+    print_r($result);
+} catch (Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+```
+
+**Result**
+
+```
+stdClass Object
+(
+    [totalSize] => 10845
+    [done] => 
+    [nextRecordsUrl] => /services/data/v42.0/query/01g0x000004qMUXAA2-2000
+    [records] => Array
+        (
+            [0] => stdClass Object
+                (
+                    [attributes] => stdClass Object
+                        (
+                            [type] => Account
+                            [url] => /services/data/v42.0/sobjects/Account/0010x000003mP6UAAU
+                        )
+
+                    [Name] => John Smith
+                )
+                
+                ...
+        )
 )
 ```
