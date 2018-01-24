@@ -9,3 +9,46 @@ This component is based on documentation available [here](https://resources.docs
 ```bash
 composer require "aracoool/salesforce-client:^1.0"
 ```
+
+## Usage
+
+Getting an information of specific account
+
+```php
+use GuzzleHttp\Client;
+use SalesForce\Authentication\Authentication;
+use SalesForce\Authentication\PasswordAuthentication;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$client = new \SalesForce\Client(new Client(), new PasswordAuthentication(
+    Authentication::LIVE_HOST,
+    'client id',
+    'cleint secret',
+    'username',
+    'password + access token'
+));
+
+try {
+    $result = $client->get('/sobjects/Account/0013600001UltKTAAZ');
+    print_r($result);
+} catch (Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+```
+
+*Result*
+
+```
+stdClass Object
+(
+    [attributes] => stdClass Object
+        (
+            [type] => Account
+            [url] => /services/data/v42.0/sobjects/Account/0013600001UltKTAAZ
+        )
+
+    [Id] => 0013600001UltKTAAZ
+    ...
+)
+```
