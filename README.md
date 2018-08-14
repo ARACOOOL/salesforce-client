@@ -12,7 +12,7 @@ composer require "aracoool/salesforce-client:^1.0"
 
 ## Usage
 
-### Getting an information of specific account
+### Getting an information of the specific account
 
 ```php
 use SalesForce\Authentication\Authentication;
@@ -52,7 +52,7 @@ stdClass Object
 )
 ```
 
-### Usage SOQL and SOQL query builder
+### Usage of the SOQL and SOQL query builder
 
 ```php
 use SalesForce\Authentication\Authentication;
