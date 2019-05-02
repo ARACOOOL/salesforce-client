@@ -55,18 +55,7 @@ stdClass Object
 ### Usage of the SOQL and SOQL query builder
 
 ```php
-use SalesForce\Authentication\Authentication;
-use SalesForce\Authentication\PasswordAuthentication;
-
-require __DIR__ . '/vendor/autoload.php';
-
-$client = new \SalesForce\ClientFactory::create(new PasswordAuthentication(
-    Authentication::LIVE_HOST,
-    'client id',
-    'cleint secret',
-    'username',
-    'password + access token'
-));
+...
 
 $soqlBuilder = new \SalesForce\Soql\Builder();
 $soqlBuilder->select(['name'])
