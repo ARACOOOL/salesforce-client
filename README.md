@@ -23,7 +23,7 @@ require __DIR__ . '/vendor/autoload.php';
 $client = new \SalesForce\ClientFactory::create(new PasswordAuthentication(
     Authentication::LIVE_HOST,
     'client id',
-    'cleint secret',
+    'client secret',
     'username',
     'password + access token'
 ));
