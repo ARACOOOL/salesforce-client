@@ -70,7 +70,9 @@ class Builder
 
         $where = $this->where;
         foreach ($where as $key => $val) {
-            if (is_string($val) && !strtotime($val)) {
+            if (is_int($key)) {
+                $where[$key] = $val;
+            } elseif (is_string($val) && !strtotime($val)) {
                 $where[$key] = "$key='$val'";
             } elseif (is_bool($val)) {
                 $where[$key] = $key . '=' . ($val ? 'TRUE' : 'FALSE');
